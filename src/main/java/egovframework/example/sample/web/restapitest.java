@@ -73,7 +73,7 @@ public class restapitest {
 		List<String> input = new ArrayList<String>();
 		input.add(list.get("Q"));
 		return ResponseEntity.ok(OAISingleton.getInstance()
-				.getEmbeddingData("text-embedding-ada-002", input));
+				.getEmbeddingData(input));
 	}
 	
 }

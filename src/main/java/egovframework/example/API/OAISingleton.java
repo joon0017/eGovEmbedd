@@ -40,4 +40,10 @@ public class OAISingleton {
 		emb = getEmbeddingModel(model,input);
 		return s.createEmbeddings(emb).getData();
 	}
+	
+	public List<Embedding> getEmbeddingData(List<String> input){
+		OpenAiService s = service;
+		emb = getEmbeddingModel("text-embedding-ada-002",input);
+		return s.createEmbeddings(emb).getData();
+	}
 }
