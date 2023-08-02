@@ -53,7 +53,7 @@ public class restapitest {
 	
 	@PostMapping("/postEmbedd")
 	public ResponseEntity<?> sendEmbedding(@RequestBody Map<String,String> list) {
-		OpenAiService service = new OpenAiService(Keys.OPENAPI_KEY,Duration.ofMinutes(9999));
+		OpenAiService service = new OpenAiService("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",Duration.ofMinutes(9999));
 		List<String> inpStr = new ArrayList<String>();
 		inpStr.add(list.get("Q"));
 
@@ -75,5 +75,4 @@ public class restapitest {
 		return ResponseEntity.ok(OAISingleton.getInstance()
 				.getEmbeddingData("text-embedding-ada-002", input));
 	}
-	
 }

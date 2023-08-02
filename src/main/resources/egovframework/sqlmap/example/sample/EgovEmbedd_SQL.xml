@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Embedd">
+	<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	
+	<resultMap id="emb" class="egovframework.example.embDAO.EmbDAO">
+	<result property="id" column="article_id"/>
+	<result property="start" column="start" />
+	<result property="end" column="end" />
+	<result property="answered" column="answered" />
+	<result property="votes" column="votes" />
+	<result property="category" column="category" />
+	<result property="title" column="title" />
+	<result property="content" column="content" />
+	</resultMap>
+
+	<insert id="embDAO.insertEmb">
+		<![CDATA[
+			INSERT INTO SAMPLE(
+				ARTICLE_ID , START , END ,
+				ANSWERED , VOTES , CATEGORY ,
+				TITLE , CONTENT
+			)
+			 
+			VALUES(
+				#id# , #start# , #end# , #answered# ,
+				#votes# , #category# , #title# , #content# 
+			)
+		]]>
+	</insert>
+	
+	<select id="embDAO.selectEmb" resultmap>
+		<![CDATA[
+			SELECT * FROM PETITION_SAMPLED
+			WHERE ARTICLE_ID = #id#
+		]]>
+	</select>
+</sqlMap>
