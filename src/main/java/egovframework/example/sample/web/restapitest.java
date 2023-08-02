@@ -19,6 +19,8 @@ import com.theokanning.openai.completion.CompletionRequest;
 import com.theokanning.openai.embedding.EmbeddingRequest;
 import com.theokanning.openai.service.OpenAiService;
 
+import egovframework.example.API.*;
+
 @RestController
 @RequestMapping("/restapi")
 public class restapitest {
@@ -31,21 +33,14 @@ public class restapitest {
 	}
 
 	
-	//free: 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
-	//paid: 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
 	//embedding model: text-embedding-ada-002
 	@PostMapping("/postMethod")
 	public ResponseEntity<?> sendQuestion(@RequestBody Map<String, String> list){
-		//유로계정
-		OpenAiService service = new OpenAiService("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",Duration.ofMinutes(9999));
-		
-		//무료계정
-//		OpenAiService service = new OpenAiService("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",Duration.ofMinutes(9999));
+		OpenAiService service = new OpenAiService(Keys.OPENAPI_KEY ,Duration.ofMinutes(9999));
 		System.out.println(list.get("Q"));
         CompletionRequest completionRequest = CompletionRequest.builder()
                 .prompt(list.get("Q"))
-                .model("text-embedding-ada-002") 
-//                .model("gpt-3.5-turbo")
+                .model("gpt-3.5-turbo")
                 .echo(true) 
                 .maxTokens(8191)
                 .temperature((double) 1.0f)
@@ -58,12 +53,9 @@ public class restapitest {
 	
 	@PostMapping("/postEmbedd")
 	public ResponseEntity<?> sendEmbedding(@RequestBody Map<String,String> list) {
-		OpenAiService service = new OpenAiService("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",Duration.ofMinutes(9999));
-//		List<String> inpStr = <"Sample document text goes here", "there will be several phrases in each batch">;
+		OpenAiService service = new OpenAiService(Keys.OPENAPI_KEY,Duration.ofMinutes(9999));
 		List<String> inpStr = new ArrayList<String>();
 		inpStr.add(list.get("Q"));
-		inpStr.add(list.get("R"));
-		inpStr.add(list.get("S"));
 
 		new EmbeddingRequest();
 		EmbeddingRequest emb = EmbeddingRequest.builder()
@@ -75,4 +67,13 @@ public class restapitest {
 		
 		return ResponseEntity.ok(service.createEmbeddings(emb).getData());
 	}
+	
+	@PostMapping("/postEmbedd2")
+	public ResponseEntity<?> fromSingleton2(@RequestBody Map<String,String> list){
+		List<String> input = new ArrayList<String>();
+		input.add(list.get("Q"));
+		return ResponseEntity.ok(OAISingleton.getInstance()
+				.getEmbeddingData("text-embedding-ada-002", input));
+	}
+	
 }
