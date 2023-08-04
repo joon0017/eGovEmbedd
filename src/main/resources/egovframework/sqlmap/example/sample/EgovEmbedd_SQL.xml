@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="egovframework.example.embDAO.EmbMapper">
+<!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
 
-	<resultMap id="sample" type="egovframework.example.embDAO.EmbVO">
-		<result property="article_id" column="article_id"/>
-		<result property="start" column="start" />
-		<result property="end" column="end" />
-		<result property="answered" column="answered" />
-		<result property="votes" column="votes" />
-		<result property="category" column="category" />
-		<result property="title" column="title" />
-		<result property="content" column="content" />
+<sqlMap namespace="embVO">
+	<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	
+	<resultMap id="emb" class="egovframework.example.embDAO.EmbVO">
+	<result property="article_id" column="article_id"/>
+	<result property="start" column="start" />
+	<result property="end" column="end" />
+	<result property="answered" column="answered" />
+	<result property="votes" column="votes" />
+	<result property="category" column="category" />
+	<result property="title" column="title" />
+	<result property="content" column="content" />
 	</resultMap>
 
-
-	<insert id="insertEmb" parameterType="EmbVO">
+	<insert id="embDAO.insertEmb">
 		<![CDATA[
 			INSERT INTO SAMPLE(
 				ARTICLE_ID , START , END ,
@@ -29,15 +30,10 @@
 		]]>
 	</insert>
 	
-
-	<select id="selectSample" resultMap="sample">
-
-			SELECT
-				ARTICLE_ID, START, END, ANSWERED, VOTES, CATEGORY, TITLE, CONTENT
-			FROM PETITION_SAMPLED
-			WHERE ARTICLE_ID=#{article_id}
-
+	<select id="embDAO.selectEmb" resultMap="emb">
+		<![CDATA[
+			SELECT * FROM PETITION_SAMPLED
+			WHERE ARTICLE_ID = #article_id#
+		]]>
 	</select>
-
-
-</mapper>
+</sqlMap>

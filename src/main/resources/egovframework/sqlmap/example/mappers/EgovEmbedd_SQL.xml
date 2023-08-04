@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
 
 <sqlMap namespace="egovframework.example.embDAO.EmbMapper">
 	<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
 	
 	<resultMap id="emb" class="egovframework.example.embDAO.EmbVO">
-	<result property="id" column="article_id"/>
+	<result property="article_id" column="article_id"/>
 	<result property="start" column="start" />
 	<result property="end" column="end" />
 	<result property="answered" column="answered" />
@@ -15,7 +15,7 @@
 	<result property="content" column="content" />
 	</resultMap>
 
-	<insert id="embDAO.insertEmb">
+	<insert id="insertEmb">
 		<![CDATA[
 			INSERT INTO SAMPLE(
 				ARTICLE_ID , START , END ,
@@ -30,10 +30,10 @@
 		]]>
 	</insert>
 	
-	<select id="embDAO.selectEmb" parameterClass="EmbVO" resultmap="egovMap">
+	<select id="selectEmb" resultMap="emb">
 		<![CDATA[
 			SELECT * FROM PETITION_SAMPLED
-			WHERE ARTICLE_ID = #id#
+			WHERE ARTICLE_ID = #article_id#
 		]]>
 	</select>
 </sqlMap>
