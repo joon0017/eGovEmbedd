@@ -1,6 +1,14 @@
 package egovframework.example.embDAO;
 
-public class EmbVO {
+import java.io.Serializable;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
+public class EmbVO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8506209007197806870L;
 	private String article_id;
 	private String start;
 	private String end;
@@ -60,6 +68,9 @@ public class EmbVO {
 		this.content = content;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this);
+	}
 	
 }
