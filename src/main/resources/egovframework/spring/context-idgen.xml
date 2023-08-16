@@ -14,5 +14,9 @@
 		<property name="cipers"   value="5" />
 		<property name="fillChar" value="0" />
 	</bean>	
-			
+	
+	<bean name="primaryTypeSequenceIds" class="org.egovframe.rte.fdl.idgnr.impl.EgovSequenceIdGnrService" destroy-method="destroy">
+		<property name="dataSource" ref="dataSource" />
+		<property name="query" value="SELECT NEXT VALUE FOR empseq FROM DUAL" />
+	</bean>		
 </beans>
