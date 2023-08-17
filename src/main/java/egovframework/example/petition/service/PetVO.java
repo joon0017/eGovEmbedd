@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 public class PetVO {
 	
-	private BigDecimal article_id;
+	private double article_id;
 	
 	private String start;
 	
@@ -20,11 +20,11 @@ public class PetVO {
 	
 	private String content;
 	
-	public BigDecimal getArticle_id() {
+	public double getArticle_id() {
 		return article_id;
 	}
 	
-	public void setArticle_id(BigDecimal article_id) {
+	public void setArticle_id(double article_id) {
 		this.article_id = article_id;
 	}
 	

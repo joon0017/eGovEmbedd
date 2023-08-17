@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egovframework.example.petition.service.impl.PetMapper">
 
-<sqlMap namespace="Petition">
-
-	<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
-	<typeAlias alias="petVO" type="egovframework.example.petition.service.PetVO" />
-	
-	<resultMap id="petition" class="egovframework.example.petition.service.PetVO">
+	<resultMap id="petition" type="egovframework.example.petition.service.PetVO">
 		<result property="article_id" column="article_id"/>
 		<result property="start" column="start"/>
 		<result property="end" column="end"/>
@@ -17,7 +13,7 @@
 		<result property="content" column="content"/>
 	</resultMap>
 
-	<insert id="petDAO.insertPet" parameterClass="petVO">
+	<insert id="insertPet" parameterType="PetVO">
 		<![CDATA[
 			INSERT INTO petition_sampled 
 				( article_id
@@ -39,7 +35,7 @@
 		]]>
 	</insert>
 	
-	<update id="petDAO.updatePet" parameterClass="petVO">
+	<update id="updatePet">
 		<![CDATA[
 			UPDATE petition_sampled
 			SET ID=#article_id#
@@ -54,14 +50,14 @@
 		]]>
 	</update>
 	
-	<delete id="petDAO.deletePet" paremeterClass="petVO">
+	<delete id="deletePet" >
 		<![CDATA[
 			DELETE FROM petition_sampled 
 			WHERE article_id=#article_id#
 		]]>
 	</delete>
     
-    <select id="petDAO.selectPet" paremeterClass="petVO" resultMap="petition">
+    <select id="selectPet" resultMap="petition">
         <![CDATA[
             SELECT
                 article_id
@@ -77,7 +73,7 @@
         ]]>
     </select>
 	
-	<select id="petDAO.selectPetList" paremeterClass="petVO" resultMap="petition">
+	<select id="selectPetList" parameterType="petVO" resultMap="petition">
 		<![CDATA[
 			SELECT 
 			    article_id
@@ -92,6 +88,4 @@
 			where 1=1
 					]]>
 	</select>
-	
-
-</sqlMap>
+</mapper>

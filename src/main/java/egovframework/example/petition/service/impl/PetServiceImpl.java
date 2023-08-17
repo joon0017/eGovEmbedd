@@ -14,22 +14,22 @@ import egovframework.rte.fdl.idgnr.EgovIdGnrService;
 
 @Service("petService")
 public class PetServiceImpl extends EgovAbstractServiceImpl implements PetService {
-
-	@Resource(name="primaryTypeSequenceIds")
-	EgovIdGnrService egovIdGnrService;
+//
+//	@Resource(name="primaryTypeSequenceIds")
+//	EgovIdGnrService egovIdGnrService;
 	
 	@Resource(name="petDAO")
 	private PetDAO petDAO;
 
-	public BigDecimal insertPet(PetVO petVO) throws Exception {
-		BigDecimal generatedPetNo = egovIdGnrService.getNextBigDecimalId();
-		egovLogger.debug("PetServiceImpl.insertPet - generated petNo : " + generatedPetNo);
+	public double insertPet(PetVO petVO) throws Exception {
+//		BigDecimal generatedPetNo = egovIdGnrService.getNextBigDecimalId();
+//		egovLogger.debug("PetServiceImpl.insertPet - generated petNo : " + generatedPetNo);
 
-		petVO.setArticle_id(generatedPetNo);
+		petVO.setArticle_id(3);
  
 		petDAO.insertPet(petVO);
 
-		return generatedPetNo;
+		return 3;
 	}
 
 	public void updatePet(PetVO petVO) throws Exception {

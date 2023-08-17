@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public interface PetService {
-	public BigDecimal insertPet(PetVO petVO) throws Exception;
+	public double insertPet(PetVO petVO) throws Exception;
 	public void updatePet(PetVO petVO) throws Exception;
 	public void deletePet(PetVO petVO) throws Exception;
 	public PetVO selectPet(PetVO petVO) throws Exception;
